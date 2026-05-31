@@ -22,11 +22,17 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
+    - name: Install Gradle 8.0
+      run: |
+        wget -q https://services.gradle.org/distributions/gradle-8.0-bin.zip
+        unzip -q gradle-8.0-bin.zip -d $HOME/gradle-8.0
+        echo "$HOME/gradle-8.0/gradle-8.0/bin" >> $GITHUB_PATH
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug
+      run: gradle assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
