@@ -7,97 +7,118 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.smartone.app.data.remote.ApiClient;
 import com.smartone.app.data.repository.ChatMessage;
-import com.smartone.app.data.repository.ChatRepository;
+import com.smartone.app.util.Constants;
 import com.smartone.app.util.PrefsManager;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ChatViewModel extends AndroidViewModel {
 
-    private ChatRepository repository;
-    private PrefsManager   prefsManager;
-    private boolean initialized = false;
+    private final ApiClient    apiClient;
+    private final PrefsManager prefsManager;
 
-    public ChatViewModel(@NonNull Application application) {
-        super(application);
-        try {
-            repository   = new ChatRepository(application);
-            prefsManager = new PrefsManager(application);
-            initialized  = true;
-        } catch (Exception e) {
-            android.util.Log.e("SmartOne", "ChatViewModel init error: " + e.getMessage(), e);
+    private final MutableLiveData<List<ChatMessage>> messages
+            = new MutableLiveData<>(new ArrayList<>());
+    private final MutableLiveData<Boolean> isLoading
+            = new MutableLiveData<>(false);
+    private final MutableLiveData<String> errorEvent
+            = new MutableLiveData<>(null);
+    private final MutableLiveData<Integer> remainingMessages
+            = new MutableLiveData<>(15);
+
+    public ChatViewModel(@NonNull Application app) {
+        super(app);
+        prefsManager = new PrefsManager(app);
+        apiClient    = new ApiClient();
+        apiClient.setApiKey(prefsManager.getApiKey());
+        apiClient.setModel(prefsManager.getModel());
+        remainingMessages.setValue(prefsManager.getRemainingFreeMessages());
+    }
+
+    public LiveData<List<ChatMessage>> getMessages()         { return messages; }
+    public LiveData<Boolean>           getIsLoading()        { return isLoading; }
+    public LiveData<String>            getErrorEvent()       { return errorEvent; }
+    public LiveData<Integer>           getRemainingMessages(){ return remainingMessages; }
+
+    public void addWelcomeMessage() {
+        List<ChatMessage> current = messages.getValue();
+        if (current == null || current.isEmpty()) {
+            addMessage(ChatMessage.welcome());
         }
-    }
-
-    public LiveData<List<ChatMessage>> getMessages() {
-        if (!initialized) return new MutableLiveData<>(new ArrayList<>());
-        return repository.getMessages();
-    }
-
-    public LiveData<Boolean> getIsLoading() {
-        if (!initialized) return new MutableLiveData<>(false);
-        return repository.getIsLoading();
-    }
-
-    public LiveData<String> getErrorEvent() {
-        if (!initialized) return new MutableLiveData<>(null);
-        return repository.getErrorEvent();
-    }
-
-    public LiveData<Integer> getRemainingMessages() {
-        if (!initialized) return new MutableLiveData<>(15);
-        return repository.getRemainingMessages();
     }
 
     public void sendMessage(String text) {
-        if (!initialized) return;
-        repository.sendMessage(text);
-    }
+        if (text == null || text.trim().isEmpty()) return;
 
-    public void addWelcomeMessage() {
-        if (!initialized) return;
-        List<ChatMessage> current = repository.getMessages().getValue();
-        if (current == null || current.isEmpty()) {
-            repository.addSystemMessage(ChatMessage.welcome());
+        if (!apiClient.isConfigured()) {
+            errorEvent.postValue("API key no configurada. Ve a Ajustes.");
+            return;
         }
-    }
 
-    public void clearMessages() {
-        if (!initialized) return;
-        repository.clearMessages();
-    }
+        if (prefsManager.hasReachedFreeLimit()) {
+            errorEvent.postValue("Límite diario alcanzado. Vuelve mañana.");
+            return;
+        }
 
-    public void analyzeJson(String jsonContent) {
-        if (!initialized) return;
-        repository.analyzeJson(jsonContent, new ApiClient.Callback() {
+        addMessage(ChatMessage.fromUser(text));
+        isLoading.postValue(true);
+
+        apiClient.sendMessage(text, new ApiClient.Callback() {
             @Override
             public void onSuccess(String reply) {
-                repository.addSystemMessage(ChatMessage.fromAssistant(reply));
+                addMessage(ChatMessage.fromAssistant(reply));
+                isLoading.postValue(false);
+                prefsManager.incrementMessagesUsed();
+                remainingMessages.postValue(
+                        prefsManager.getRemainingFreeMessages());
             }
+
             @Override
             public void onError(String error) {
-                repository.addSystemMessage(ChatMessage.fromError(error));
+                addMessage(ChatMessage.fromError(error));
+                isLoading.postValue(false);
+                errorEvent.postValue(error);
             }
         });
     }
 
+    public void analyzeJson(String json) {
+        if (!apiClient.isConfigured()) return;
+        String prompt = "Analiza este JSON:\n" + json;
+        apiClient.sendOneShot(prompt, new ApiClient.Callback() {
+            @Override
+            public void onSuccess(String reply) {
+                addMessage(ChatMessage.fromAssistant(reply));
+            }
+            @Override
+            public void onError(String error) {
+                addMessage(ChatMessage.fromError(error));
+            }
+        });
+    }
+
+    public void clearMessages() {
+        messages.postValue(new ArrayList<>());
+        apiClient.clearHistory();
+    }
+
     public void reloadConfig() {
-        if (!initialized) return;
-        repository.reloadConfig();
+        apiClient.setApiKey(prefsManager.getApiKey());
+        apiClient.setModel(prefsManager.getModel());
+        remainingMessages.postValue(prefsManager.getRemainingFreeMessages());
     }
 
     public boolean isApiKeyConfigured() {
-        if (!initialized || prefsManager == null) return false;
         return prefsManager.hasApiKey();
     }
 
-    public int getRemainingFreeCount() {
-        if (!initialized || prefsManager == null) return 0;
-        return prefsManager.getRemainingFreeMessages();
-    }
-
-    public boolean hasReachedLimit() {
-        if (!initialized || prefsManager == null) return false;
-        return prefsManager.hasReachedFreeLimit();
+    private void addMessage(ChatMessage message) {
+        List<ChatMessage> current = new ArrayList<>(
+                messages.getValue() != null
+                        ? messages.getValue()
+                        : Collections.emptyList());
+        current.add(message);
+        messages.postValue(current);
     }
 }
