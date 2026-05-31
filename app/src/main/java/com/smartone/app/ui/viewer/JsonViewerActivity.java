@@ -152,6 +152,9 @@ public class JsonViewerActivity extends AppCompatActivity {
     }
 
     private void validateCurrentJson() {
+        if (binding.etJsonInput.getText() != null && !binding.etJsonInput.getText().toString().trim().isEmpty()) {
+            currentJson = binding.etJsonInput.getText().toString();
+        }
         if (currentJson.trim().isEmpty()) {
             showSnackbar("Carga o pega un JSON para validar.");
             return;
