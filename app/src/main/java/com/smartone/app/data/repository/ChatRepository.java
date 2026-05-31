@@ -4,6 +4,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.smartone.app.SmartOneApplication;
+import com.smartone.app.data.local.AppDatabase;
 import com.smartone.app.data.remote.ApiClient;
 import com.smartone.app.util.PrefsManager;
 import java.util.ArrayList;
@@ -26,12 +27,28 @@ public class ChatRepository {
             = new MutableLiveData<>(0);
 
     public ChatRepository(Application app) {
-        SmartOneApplication application = SmartOneApplication.from(app);
-        apiClient         = application.container.apiClient;
-        historyRepository = application.container.historyRepository;
-        prefsManager      = application.container.prefsManager;
-        apiClient.setApiKey(prefsManager.getApiKey());
-        apiClient.setModel(prefsManager.getModel());
+        PrefsManager prefs;
+        ApiClient client;
+        HistoryRepository history;
+
+        try {
+            SmartOneApplication application = (SmartOneApplication) app;
+            prefs   = application.container.prefsManager;
+            client  = application.container.apiClient;
+            history = application.container.historyRepository;
+        } catch (Exception e) {
+            android.util.Log.e("SmartOne", "Error obteniendo container: " + e.getMessage());
+            prefs   = new PrefsManager(app);
+            client  = new ApiClient();
+            history = new HistoryRepository(app);
+        }
+
+        this.prefsManager      = prefs;
+        this.apiClient         = client;
+        this.historyRepository = history;
+
+        this.apiClient.setApiKey(this.prefsManager.getApiKey());
+        this.apiClient.setModel(this.prefsManager.getModel());
         updateRemainingMessages();
     }
 
