@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/activity_settings.xml",
+        "source": "com.smartone.app-main-38:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/item_chat_message.xml",
+        "source": "com.smartone.app-main-38:/layout/item_chat_message.xml"
+    },
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/activity_history.xml",
+        "source": "com.smartone.app-main-38:/layout/activity_history.xml"
+    },
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/item_json_line.xml",
+        "source": "com.smartone.app-main-38:/layout/item_json_line.xml"
+    },
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/activity_ai_chat.xml",
+        "source": "com.smartone.app-main-38:/layout/activity_ai_chat.xml"
+    },
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/activity_json_viewer.xml",
+        "source": "com.smartone.app-main-38:/layout/activity_json_viewer.xml"
+    },
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/item_history.xml",
+        "source": "com.smartone.app-main-38:/layout/item_history.xml"
+    },
+    {
+        "merged": "com.smartone.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "com.smartone.app-main-38:/layout/activity_main.xml"
+    }
+]

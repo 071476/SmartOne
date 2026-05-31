@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartOne</string>
+    <string name="nav_viewer">Viewer</string>
+    <string name="nav_history">Historial</string>
+    <string name="nav_chat">Chat IA</string>
+    <string name="nav_settings">Ajustes</string>
+    <string name="btn_validate">Validar JSON</string>
+    <string name="btn_analyze_ai">Analizar con IA</string>
+    <string name="btn_load_file">Cargar archivo</string>
+    <string name="hint_chat_input">Escribe un mensaje...</string>
+    <string name="hint_search">Buscar en historial...</string>
+    <string name="msg_no_api_key">Configura tu API key en Ajustes.</string>
+    <string name="msg_json_valid">JSON válido</string>
+    <string name="msg_json_invalid">JSON inválido</string>
+    <string name="action_new_chat">Nueva conversación</string>
+    <string name="action_delete_all">Eliminar todo</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="version">SmartOne v1.0</string>
+</resources>

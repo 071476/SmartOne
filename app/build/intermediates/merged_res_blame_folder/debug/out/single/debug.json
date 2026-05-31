@@ -1,0 +1,194 @@
+[
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_edit.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_edit.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_settings_row_bottom.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_settings_row_bottom.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_bubble_system.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_bubble_system.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_dot_red.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_dot_red.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_badge_json.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_badge_json.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_upload.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_upload.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.smartone.app-main-38:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_copy.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_copy.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_star_filled.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_star_filled.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_filter_inactive.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_filter_inactive.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_dot_yellow.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_dot_yellow.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_model_active.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_model_active.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_code.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_code.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_info.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_info.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_activity_json_viewer.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/activity_json_viewer.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_chevron_right.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_chevron_right.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_activity_settings.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_item_chat_message.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/item_chat_message.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_item_json_line.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/item_json_line.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_chip.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_chip.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_item_history.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/item_history.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_input.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_input.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_chat.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_chat.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_settings.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_settings.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_icon_button.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_icon_button.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_history.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_history.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_new_chat.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_new_chat.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_filter_active.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_filter_active.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_activity_history.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/activity_history.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_settings_card.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_settings_card.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/layout_activity_ai_chat.xml.flat",
+        "source": "com.smartone.app-main-38:/layout/activity_ai_chat.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_status_dot.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_status_dot.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_bubble_user.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_bubble_user.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_tab_inactive.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_tab_inactive.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_loading_dot.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_loading_dot.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_trash.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_trash.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_bubble_error.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_bubble_error.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_dot_green.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_dot_green.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_close.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_close.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_send_button.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_send_button.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_badge_chat.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_badge_chat.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_bubble_assistant.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_bubble_assistant.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bottom_nav_tint.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bottom_nav_tint.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_star_outline.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_star_outline.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_ic_send.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/ic_send.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_settings_row_top.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_settings_row_top.xml"
+    },
+    {
+        "merged": "com.smartone.app-merged_res-36:/drawable_bg_tab_active.xml.flat",
+        "source": "com.smartone.app-main-38:/drawable/bg_tab_active.xml"
+    }
+]
