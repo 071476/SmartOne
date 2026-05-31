@@ -2,6 +2,7 @@ package com.smartone.app.ui.chat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -16,6 +17,7 @@ import com.smartone.app.util.Constants;
 
 public class AiChatActivity extends AppCompatActivity {
 
+    private static final String TAG = "SmartOne";
     private ActivityAiChatBinding binding;
     private ChatViewModel          viewModel;
     private ChatMessageAdapter     adapter;
@@ -23,25 +25,41 @@ public class AiChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "AiChatActivity onCreate start");
 
         try {
-            binding   = ActivityAiChatBinding.inflate(getLayoutInflater());
-            viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+            Log.d(TAG, "Inflating binding...");
+            binding = ActivityAiChatBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
+            Log.d(TAG, "Binding OK");
+
+            Log.d(TAG, "Creating ViewModel...");
+            viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+            Log.d(TAG, "ViewModel OK");
 
             setupRecyclerView();
+            Log.d(TAG, "RecyclerView OK");
+
             setupClickListeners();
+            Log.d(TAG, "Clicks OK");
+
             observeViewModel();
+            Log.d(TAG, "Observers OK");
+
             checkApiKey();
             handleIncomingJson();
+            Log.d(TAG, "AiChatActivity ready");
 
         } catch (Exception e) {
-            android.util.Log.e("SmartOne", "Error en AiChatActivity: " + e.getMessage(), e);
-            if (binding != null) {
-                setContentView(binding.getRoot());
-                Snackbar.make(binding.getRoot(),
-                        "Error al cargar el chat: " + e.getMessage(),
-                        Snackbar.LENGTH_LONG).show();
+            Log.e(TAG, "CRASH en AiChatActivity: " + e.getMessage(), e);
+            try {
+                if (binding != null) {
+                    Snackbar.make(binding.getRoot(),
+                            "Error: " + e.getMessage(),
+                            Snackbar.LENGTH_LONG).show();
+                }
+            } catch (Exception e2) {
+                Log.e(TAG, "Error mostrando snackbar: " + e2.getMessage());
             }
         }
     }
@@ -55,7 +73,7 @@ public class AiChatActivity extends AppCompatActivity {
                 updateStatusIndicator();
             }
         } catch (Exception e) {
-            android.util.Log.e("SmartOne", "Error en onResume: " + e.getMessage());
+            Log.e(TAG, "Error en onResume: " + e.getMessage());
         }
     }
 
@@ -89,9 +107,11 @@ public class AiChatActivity extends AppCompatActivity {
 
     private void observeViewModel() {
         viewModel.getMessages().observe(this, messages -> {
-            adapter.submitList(messages);
-            if (!messages.isEmpty()) {
-                binding.rvMessages.smoothScrollToPosition(messages.size() - 1);
+            if (messages != null) {
+                adapter.submitList(messages);
+                if (!messages.isEmpty()) {
+                    binding.rvMessages.smoothScrollToPosition(messages.size() - 1);
+                }
             }
         });
 
@@ -175,8 +195,8 @@ public class AiChatActivity extends AppCompatActivity {
     private void confirmNewChat() {
         new AlertDialog.Builder(this)
                 .setTitle("Nueva conversación")
-                .setMessage("Se borrará el historial de esta sesión. ¿Continuar?")
-                .setPositiveButton("Sí, borrar", (d, w) -> {
+                .setMessage("Se borrará el historial. ¿Continuar?")
+                .setPositiveButton("Sí", (d, w) -> {
                     viewModel.clearMessages();
                     viewModel.addWelcomeMessage();
                 })
