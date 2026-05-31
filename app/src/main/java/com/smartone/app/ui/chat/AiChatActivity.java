@@ -23,22 +23,40 @@ public class AiChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding   = ActivityAiChatBinding.inflate(getLayoutInflater());
-        viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
-        setContentView(binding.getRoot());
 
-        setupRecyclerView();
-        setupClickListeners();
-        observeViewModel();
-        checkApiKey();
-        handleIncomingJson();
+        try {
+            binding   = ActivityAiChatBinding.inflate(getLayoutInflater());
+            viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+            setContentView(binding.getRoot());
+
+            setupRecyclerView();
+            setupClickListeners();
+            observeViewModel();
+            checkApiKey();
+            handleIncomingJson();
+
+        } catch (Exception e) {
+            android.util.Log.e("SmartOne", "Error en AiChatActivity: " + e.getMessage(), e);
+            if (binding != null) {
+                setContentView(binding.getRoot());
+                Snackbar.make(binding.getRoot(),
+                        "Error al cargar el chat: " + e.getMessage(),
+                        Snackbar.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        viewModel.reloadConfig();
-        updateStatusIndicator();
+        try {
+            if (viewModel != null) {
+                viewModel.reloadConfig();
+                updateStatusIndicator();
+            }
+        } catch (Exception e) {
+            android.util.Log.e("SmartOne", "Error en onResume: " + e.getMessage());
+        }
     }
 
     private void setupRecyclerView() {
@@ -78,10 +96,9 @@ public class AiChatActivity extends AppCompatActivity {
         });
 
         viewModel.getIsLoading().observe(this, loading -> {
-            if (loading) {
-                showLoadingIndicator();
-            } else {
-                hideLoadingIndicator();
+            if (loading != null) {
+                if (loading) showLoadingIndicator();
+                else hideLoadingIndicator();
             }
         });
 
@@ -125,7 +142,7 @@ public class AiChatActivity extends AppCompatActivity {
     }
 
     private void checkApiKey() {
-        if (!viewModel.isApiKeyConfigured()) {
+        if (viewModel != null && !viewModel.isApiKeyConfigured()) {
             showApiKeyWarning();
         }
     }
@@ -139,6 +156,7 @@ public class AiChatActivity extends AppCompatActivity {
     }
 
     private void updateStatusIndicator() {
+        if (viewModel == null || binding == null) return;
         boolean configured = viewModel.isApiKeyConfigured();
         binding.tvStatus.setText(configured ? "Conectado" : "Sin configurar");
         binding.statusDot.getBackground().setTint(
@@ -149,7 +167,7 @@ public class AiChatActivity extends AppCompatActivity {
 
     private void handleIncomingJson() {
         String json = getIntent().getStringExtra(Constants.EXTRA_JSON_CONTENT);
-        if (json != null && !json.isEmpty()) {
+        if (json != null && !json.isEmpty() && viewModel != null) {
             viewModel.analyzeJson(json);
         }
     }
@@ -171,6 +189,7 @@ public class AiChatActivity extends AppCompatActivity {
     }
 
     private void showError(String message) {
+        if (binding == null) return;
         Snackbar snackbar = Snackbar.make(
                 binding.getRoot(), message, Snackbar.LENGTH_LONG);
         if (message.contains("API key") || message.contains("Ajustes")) {
