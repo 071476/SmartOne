@@ -49,3 +49,4 @@ public final class Constants {
         "y concisa. Si el usuario comparte JSON inválido, explica exactamente " +
         "qué línea falla y cómo corregirla.";
 }
+// ok
