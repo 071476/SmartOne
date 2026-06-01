@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class JsonViewerActivity extends AppCompatActivity {
+public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
 
     private ActivityJsonViewerBinding binding;
     private JsonLineAdapter            adapter;

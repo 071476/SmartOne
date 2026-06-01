@@ -14,7 +14,7 @@ import com.smartone.app.databinding.ActivitySettingsBinding;
 import com.smartone.app.util.Constants;
 import com.smartone.app.util.PrefsManager;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends com.smartone.app.ui.BaseActivity {
 
     private ActivitySettingsBinding binding;
     private PrefsManager            prefsManager;
@@ -35,6 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         setupBehaviorSection();
         setupFontSelector();
         setupDataSection();
+        setupBottomNav(R.id.navSettings);
     }
 
     private void loadCurrentSettings() {

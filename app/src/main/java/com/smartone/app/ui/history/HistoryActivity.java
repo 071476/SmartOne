@@ -20,7 +20,7 @@ import com.smartone.app.ui.viewer.JsonViewerActivity;
 import com.smartone.app.util.Constants;
 import java.util.List;
 
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends com.smartone.app.ui.BaseActivity {
 
     private ActivityHistoryBinding binding;
     private HistoryRepository      repository;
@@ -44,6 +44,7 @@ public class HistoryActivity extends AppCompatActivity {
         setupFilters();
         setupClickListeners();
         observeEntries(Filter.ALL);
+        setupBottomNav(R.id.navHistory);
     }
 
     private void setupRecyclerView() {

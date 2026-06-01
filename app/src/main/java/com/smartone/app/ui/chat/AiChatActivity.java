@@ -9,7 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.smartone.app.databinding.ActivityAiChatBinding;
 import com.smartone.app.util.Constants;
 
-public class AiChatActivity extends AppCompatActivity {
+public class AiChatActivity extends com.smartone.app.ui.BaseActivity {
 
     private ActivityAiChatBinding binding;
     private ChatViewModel viewModel;
@@ -24,6 +24,7 @@ public class AiChatActivity extends AppCompatActivity {
         setupRecyclerView();
         setupClicks();
         observeViewModel();
+        setupBottomNav(R.id.navChat);
     }
 
     private void setupRecyclerView() {
