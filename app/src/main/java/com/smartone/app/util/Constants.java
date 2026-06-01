@@ -41,6 +41,19 @@ public final class Constants {
     public static final String DB_NAME            = "smartone.db";
     public static final int    DB_VERSION         = 1;
 
+    public static final String PERFORMANCE_PROMPT =
+        "Eres un experto en rendimiento de software. Analiza el siguiente JSON o código " +
+        "y genera un reporte técnico con estas 4 métricas:\n\n" +
+        "📊 MEMORIA ESTIMADA\n" +
+        "Estima cuántos MB o KB consume esta estructura en memoria RAM.\n\n" +
+        "⚡ TIEMPO DE RESPUESTA\n" +
+        "Estima cuántos milisegundos tarda en parsearse o ejecutarse.\n\n" +
+        "🔄 THROUGHPUT\n" +
+        "Estima cuántos requests por segundo puede manejar una API con esta estructura.\n\n" +
+        "💻 CPU Y COMPLEJIDAD\n" +
+        "Identifica la complejidad algorítmica O(n) y el impacto en CPU.\n\n" +
+        "Sé específico con números reales. Responde en español.";
+
     public static final String SYSTEM_PROMPT =
         "Eres un asistente técnico integrado en SmartOne, una app Android para " +
         "desarrolladores. Puedes analizar JSON, detectar errores de sintaxis, " +
@@ -50,3 +63,4 @@ public final class Constants {
         "qué línea falla y cómo corregirla.";
 }
 // ok
+// agregado después

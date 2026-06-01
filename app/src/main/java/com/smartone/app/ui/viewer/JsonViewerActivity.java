@@ -86,6 +86,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         binding.btnValidate.setOnClickListener(v -> validateCurrentJson());
         binding.btnAnalyzeAI.setOnClickListener(v -> openChatWithJson());
         binding.btnCopy.setOnClickListener(v -> copyToClipboard());
+        binding.btnPerformance.setOnClickListener(v -> analyzePerformance());
     }
 
     private void setupTabs() {
@@ -210,6 +211,45 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         clipboard.setPrimaryClip(
                 ClipData.newPlainText("json", currentJson));
         showSnackbar("JSON copiado al portapapeles.");
+    }
+
+    private void analyzePerformance() {
+        if (currentJson.isEmpty()) {
+            showSnackbar("Carga o pega un JSON primero.");
+            return;
+        }
+        showSnackbar("Analizando rendimiento...");
+        SmartOneApplication.from(getApplication())
+                .container
+                .apiClient
+                .sendOneShot(
+                        Constants.PERFORMANCE_PROMPT + "\n\nJSON a analizar:\n" + currentJson,
+                        new com.smartone.app.data.remote.ApiClient.Callback() {
+                            @Override
+                            public void onSuccess(String reply) {
+                                runOnUiThread(() -> showPerformanceDialog(reply));
+                            }
+                            @Override
+                            public void onError(String error) {
+                                runOnUiThread(() -> showSnackbar("Error: " + error));
+                            }
+                        }
+                );
+    }
+
+    private void showPerformanceDialog(String report) {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("⚡ Reporte de Rendimiento")
+                .setMessage(report)
+                .setPositiveButton("Cerrar", null)
+                .setNeutralButton("Copiar", (d, w) -> {
+                    android.content.ClipboardManager clipboard =
+                            (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    clipboard.setPrimaryClip(
+                            android.content.ClipData.newPlainText("reporte", report));
+                    showSnackbar("Reporte copiado.");
+                })
+                .show();
     }
 
     private void showInfoDialog() {
