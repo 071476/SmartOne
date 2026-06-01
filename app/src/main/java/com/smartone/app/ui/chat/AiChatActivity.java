@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.smartone.app.databinding.ActivityAiChatBinding;
+import com.smartone.app.R;
 import com.smartone.app.util.Constants;
 
 public class AiChatActivity extends com.smartone.app.ui.BaseActivity {
