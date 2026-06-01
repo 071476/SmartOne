@@ -17,6 +17,7 @@ import com.smartone.app.R;
 import com.smartone.app.SmartOneApplication;
 import com.smartone.app.data.repository.HistoryRepository;
 import com.smartone.app.databinding.ActivityJsonViewerBinding;
+import com.smartone.app.R;
 import com.smartone.app.parser.JsonParser;
 import com.smartone.app.ui.chat.AiChatActivity;
 import com.smartone.app.util.Constants;
@@ -51,6 +52,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         setupFilePicker();
         setupClickListeners();
         setupTabs();
+        setupBottomNav(R.id.navViewer);
 
         String incomingJson = getIntent().getStringExtra(Constants.EXTRA_JSON_CONTENT);
         if (incomingJson != null && !incomingJson.isEmpty()) {

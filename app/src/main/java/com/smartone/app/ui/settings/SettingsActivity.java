@@ -11,6 +11,7 @@ import com.smartone.app.R;
 import com.smartone.app.SmartOneApplication;
 import com.smartone.app.data.repository.HistoryRepository;
 import com.smartone.app.databinding.ActivitySettingsBinding;
+import com.smartone.app.R;
 import com.smartone.app.util.Constants;
 import com.smartone.app.util.PrefsManager;
 

@@ -15,6 +15,7 @@ import com.smartone.app.SmartOneApplication;
 import com.smartone.app.data.local.HistoryEntry;
 import com.smartone.app.data.repository.HistoryRepository;
 import com.smartone.app.databinding.ActivityHistoryBinding;
+import com.smartone.app.R;
 import com.smartone.app.ui.chat.AiChatActivity;
 import com.smartone.app.ui.viewer.JsonViewerActivity;
 import com.smartone.app.util.Constants;
