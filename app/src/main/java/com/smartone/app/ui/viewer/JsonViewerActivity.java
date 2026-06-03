@@ -177,6 +177,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         binding.tvJsonInfo.setVisibility(View.VISIBLE);
         adapter.submitList(JsonParser.buildLines(currentJson, -1));
         binding.tvPreview.setText(result.formatted);
+        updateLineNumbers(result.formatted);
         historyRepository.saveJson(currentFileName, currentJson);
         binding.btnAnalyzeAI.setEnabled(true);
     }
@@ -190,6 +191,19 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         adapter.submitList(JsonParser.buildLines(currentJson, result.errorLine));
         binding.tvPreview.setText("");
         binding.btnAnalyzeAI.setEnabled(false);
+    }
+
+    private void updateLineNumbers(String text) {
+        if (text == null || text.isEmpty()) {
+            binding.tvLineNumbers.setText("");
+            return;
+        }
+        String[] lines = text.split("\\n", -1);
+        StringBuilder numbers = new StringBuilder();
+        for (int i = 1; i <= lines.length; i++) {
+            numbers.append(i).append("\n");
+        }
+        binding.tvLineNumbers.setText(numbers.toString());
     }
 
     private void openChatWithJson() {
