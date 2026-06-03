@@ -31,7 +31,7 @@ public class AiChatActivity extends com.smartone.app.ui.BaseActivity {
     private void setupRecyclerView() {
         adapter = new ChatMessageAdapter();
         LinearLayoutManager lm = new LinearLayoutManager(this);
-        lm.setStackFromEnd(true);
+        lm.setStackFromEnd(false);
         binding.rvMessages.setLayoutManager(lm);
         binding.rvMessages.setAdapter(adapter);
         binding.rvMessages.setItemAnimator(null);
