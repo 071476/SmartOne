@@ -84,7 +84,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
                         "application/json", "text/plain", "*/*"}));
         binding.btnInfo.setOnClickListener(v -> showInfoDialog());
         binding.btnValidate.setOnClickListener(v -> validateCurrentJson());
-        binding.btnAnalyzeAI.setOnClickListener(v -> openChatWithJson());
+        binding.btnAnalyzeAI.setOnClickListener(v -> analyzeWithAI());
         binding.btnCopy.setOnClickListener(v -> copyToClipboard());
         binding.btnClear.setOnClickListener(v -> clearAll());
         binding.btnPerformance.setOnClickListener(v -> analyzePerformance());
@@ -240,6 +240,45 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         adapter.submitList(new java.util.ArrayList<>());
         binding.btnAnalyzeAI.setEnabled(false);
         showSnackbar("Limpiado.");
+    }
+
+    private void analyzeWithAI() {
+        if (currentJson.isEmpty()) {
+            showSnackbar("Carga o pega un JSON primero.");
+            return;
+        }
+        showSnackbar("Analizando con IA...");
+        SmartOneApplication.from(getApplication())
+                .container
+                .apiClient
+                .sendOneShot(
+                        "Analiza este JSON. Describe su estructura, los campos principales y sus tipos, y detecta cualquier inconsistencia o mejora posible. Responde en espanol:\n\n" + currentJson,
+                        new com.smartone.app.data.remote.ApiClient.Callback() {
+                            @Override
+                            public void onSuccess(String reply) {
+                                runOnUiThread(() -> showAnalysisDialog(reply));
+                            }
+                            @Override
+                            public void onError(String error) {
+                                runOnUiThread(() -> showSnackbar("Error: " + error));
+                            }
+                        }
+                );
+    }
+
+    private void showAnalysisDialog(String report) {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("\uD83E\uDD16 Analisis con IA")
+                .setMessage(report)
+                .setPositiveButton("Cerrar", null)
+                .setNeutralButton("Copiar", (d, w) -> {
+                    android.content.ClipboardManager clipboard =
+                            (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    clipboard.setPrimaryClip(
+                            android.content.ClipData.newPlainText("analisis", report));
+                    showSnackbar("Analisis copiado.");
+                })
+                .show();
     }
 
     private void analyzePerformance() {
