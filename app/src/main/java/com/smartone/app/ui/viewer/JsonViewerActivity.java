@@ -86,6 +86,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         binding.btnValidate.setOnClickListener(v -> validateCurrentJson());
         binding.btnAnalyzeAI.setOnClickListener(v -> openChatWithJson());
         binding.btnCopy.setOnClickListener(v -> copyToClipboard());
+        binding.btnClear.setOnClickListener(v -> clearAll());
         binding.btnPerformance.setOnClickListener(v -> analyzePerformance());
     }
 
@@ -211,6 +212,20 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         clipboard.setPrimaryClip(
                 ClipData.newPlainText("json", currentJson));
         showSnackbar("JSON copiado al portapapeles.");
+    }
+
+    private void clearAll() {
+        currentJson = "";
+        currentFileName = "sin_archivo.json";
+        binding.etJsonInput.setText("");
+        binding.tvFileName.setText("sin_archivo.json");
+        binding.tvFileInfo.setText("Sin archivo cargado");
+        binding.tvStatus.setVisibility(android.view.View.GONE);
+        binding.tvJsonInfo.setVisibility(android.view.View.GONE);
+        binding.tvPreview.setText("");
+        adapter.submitList(new java.util.ArrayList<>());
+        binding.btnAnalyzeAI.setEnabled(false);
+        showSnackbar("Limpiado.");
     }
 
     private void analyzePerformance() {

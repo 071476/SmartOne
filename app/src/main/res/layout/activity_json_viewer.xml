@@ -184,6 +184,15 @@
                 android:contentDescription="Copiar JSON"
                 android:padding="4dp" />
 
+            <ImageButton
+                android:id="@+id/btnClear"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_close"
+                android:contentDescription="Limpiar"
+                android:padding="4dp" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
