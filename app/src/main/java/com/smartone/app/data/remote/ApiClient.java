@@ -21,7 +21,10 @@ public class ApiClient {
     private static final MediaType JSON_TYPE =
             MediaType.get("application/json; charset=utf-8");
 
-    private String apiKey;
+    // URL del backend de SmartOne en Railway
+    private static final String BACKEND_URL =
+            "https://smartone-backend-production.up.railway.app/chat";
+
     private String model;
     private final OkHttpClient httpClient;
     private final ExecutorService executor;
@@ -33,73 +36,81 @@ public class ApiClient {
     }
 
     public ApiClient() {
-        this.apiKey = "";
-        this.model  = Constants.CLAUDE_MODEL_FAST;
+        this.model = "haiku";
         this.httpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
                 .build();
-        this.executor = Executors.newSingleThreadExecutor();
+        this.executor = Executors.newCachedThreadPool();
         this.conversationHistory = new ArrayList<>();
     }
 
+    // Ya no necesita API key porque el backend la tiene
     public void setApiKey(String apiKey) {
-        this.apiKey = apiKey != null ? apiKey.trim() : "";
+        // No-op: la key vive en el backend
     }
 
     public void setModel(String model) {
-        this.model = model != null ? model : Constants.CLAUDE_MODEL_FAST;
+        if (model != null && model.toLowerCase().contains("sonnet")) {
+            this.model = "sonnet";
+        } else {
+            this.model = "haiku";
+        }
     }
 
+    // Siempre configurado porque usa el backend
     public boolean isConfigured() {
-        return apiKey != null && !apiKey.isEmpty();
+        return true;
     }
 
     public void sendMessage(String userMessage, Callback callback) {
-        if (!isConfigured()) {
-            callback.onError("API key no configurada. Ve a Ajustes para agregarla.");
-            return;
-        }
-        executor.execute(() -> {
-            try {
-                addToHistory("user", userMessage);
-                String body     = buildRequestBody(conversationHistory);
-                String response = executeRequest(body);
-                String reply    = parseReply(response);
-                addToHistory("assistant", reply);
-                callback.onSuccess(reply);
-            } catch (IOException e) {
-                removeLastMessage();
-                callback.onError("Sin conexión. Verifica tu red e intenta de nuevo.");
-            } catch (JSONException e) {
-                removeLastMessage();
-                callback.onError("Error al procesar la respuesta de Claude.");
-            } catch (ApiException e) {
-                removeLastMessage();
-                callback.onError(e.getMessage());
-            }
-        });
+        sendToBackend(userMessage, callback);
     }
 
     public void sendOneShot(String userMessage, Callback callback) {
-        if (!isConfigured()) {
-            callback.onError("API key no configurada. Ve a Ajustes para agregarla.");
-            return;
-        }
+        sendToBackend(userMessage, callback);
+    }
+
+    private void sendToBackend(String userMessage, Callback callback) {
         executor.execute(() -> {
             try {
-                List<JSONObject> single = new ArrayList<>();
-                single.add(buildMessage("user", userMessage));
-                String body     = buildRequestBody(single);
-                String response = executeRequest(body);
-                callback.onSuccess(parseReply(response));
+                JSONObject payload = new JSONObject();
+                payload.put("message", userMessage);
+                payload.put("model", model);
+
+                RequestBody body = RequestBody.create(payload.toString(), JSON_TYPE);
+
+                Request request = new Request.Builder()
+                        .url(BACKEND_URL)
+                        .post(body)
+                        .build();
+
+                try (Response response = httpClient.newCall(request).execute()) {
+                    String responseBody = response.body() != null
+                            ? response.body().string() : "";
+
+                    JSONObject json = new JSONObject(responseBody);
+
+                    if (json.has("error")) {
+                        callback.onError(json.getString("error"));
+                        return;
+                    }
+
+                    String reply = json.optString("reply", "");
+                    if (reply.isEmpty()) {
+                        callback.onError("Respuesta vacía del servidor.");
+                    } else {
+                        callback.onSuccess(reply);
+                    }
+                }
+
             } catch (IOException e) {
-                callback.onError("Sin conexión. Verifica tu red e intenta de nuevo.");
+                callback.onError("Sin conexión. Verifica tu internet.");
             } catch (JSONException e) {
-                callback.onError("Error al procesar la respuesta de Claude.");
-            } catch (ApiException e) {
-                callback.onError(e.getMessage());
+                callback.onError("Error procesando la respuesta.");
+            } catch (Exception e) {
+                callback.onError("Error: " + e.getMessage());
             }
         });
     }
@@ -110,82 +121,6 @@ public class ApiClient {
 
     public int getHistorySize() {
         return conversationHistory.size();
-    }
-
-    private String buildRequestBody(List<JSONObject> messages) throws JSONException {
-        JSONArray arr = new JSONArray();
-        for (JSONObject msg : messages) arr.put(msg);
-        JSONObject body = new JSONObject();
-        body.put("model",      model);
-        body.put("max_tokens", Constants.CLAUDE_MAX_TOKENS);
-        body.put("system",     Constants.SYSTEM_PROMPT);
-        body.put("messages",   arr);
-        return body.toString();
-    }
-
-    private String executeRequest(String jsonBody) throws IOException, ApiException {
-        Request request = new Request.Builder()
-                .url(Constants.CLAUDE_BASE_URL)
-                .post(RequestBody.create(jsonBody, JSON_TYPE))
-                .addHeader("x-api-key",         apiKey)
-                .addHeader("anthropic-version", Constants.CLAUDE_API_VERSION)
-                .addHeader("content-type",      "application/json")
-                .build();
-        try (Response response = httpClient.newCall(request).execute()) {
-            String responseBody = response.body() != null
-                    ? response.body().string() : "";
-            if (!response.isSuccessful()) {
-                throw new ApiException(parseApiError(responseBody, response.code()));
-            }
-            return responseBody;
-        }
-    }
-
-    private String parseReply(String responseBody) throws JSONException {
-        JSONObject json = new JSONObject(responseBody);
-        return json.getJSONArray("content")
-                   .getJSONObject(0)
-                   .getString("text");
-    }
-
-    private String parseApiError(String errorBody, int httpCode) {
-        try {
-            JSONObject json = new JSONObject(errorBody);
-            if (json.has("error")) {
-                String message = json.getJSONObject("error")
-                                     .optString("message", "Error desconocido.");
-                return buildUserFriendlyError(httpCode, message);
-            }
-        } catch (JSONException ignored) {}
-        return buildUserFriendlyError(httpCode, errorBody);
-    }
-
-    private String buildUserFriendlyError(int httpCode, String raw) {
-        switch (httpCode) {
-            case 401: return "API key inválida. Verifica en Ajustes.";
-            case 403: return "Sin acceso. Revisa los permisos de tu API key.";
-            case 429: return "Límite de solicitudes alcanzado. Espera un momento.";
-            case 500:
-            case 529: return "El servidor de Claude no está disponible.";
-            default:  return "Error " + httpCode + ": " + raw;
-        }
-    }
-
-    private void addToHistory(String role, String content) throws JSONException {
-        conversationHistory.add(buildMessage(role, content));
-    }
-
-    private JSONObject buildMessage(String role, String content) throws JSONException {
-        JSONObject msg = new JSONObject();
-        msg.put("role",    role);
-        msg.put("content", content);
-        return msg;
-    }
-
-    private void removeLastMessage() {
-        if (!conversationHistory.isEmpty()) {
-            conversationHistory.remove(conversationHistory.size() - 1);
-        }
     }
 
     public static class ApiException extends Exception {
