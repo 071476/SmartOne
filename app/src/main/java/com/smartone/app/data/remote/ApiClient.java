@@ -26,6 +26,7 @@ public class ApiClient {
             "https://smartone-backend-production.up.railway.app/chat";
 
     private String model;
+    private String deviceId = "";
     private final OkHttpClient httpClient;
     private final ExecutorService executor;
     private final List<JSONObject> conversationHistory;
@@ -59,6 +60,10 @@ public class ApiClient {
         }
     }
 
+    public void setDeviceId(String id) {
+        this.deviceId = id != null ? id : "";
+    }
+
     // Siempre configurado porque usa el backend
     public boolean isConfigured() {
         return true;
@@ -78,6 +83,7 @@ public class ApiClient {
                 JSONObject payload = new JSONObject();
                 payload.put("message", userMessage);
                 payload.put("model", model);
+                payload.put("deviceId", deviceId);
 
                 RequestBody body = RequestBody.create(payload.toString(), JSON_TYPE);
 

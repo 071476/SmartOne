@@ -1,6 +1,7 @@
 package com.smartone.app.di;
 
 import android.app.Application;
+import android.provider.Settings;
 import com.smartone.app.data.remote.ApiClient;
 import com.smartone.app.data.repository.HistoryRepository;
 import com.smartone.app.util.PrefsManager;
@@ -14,18 +15,22 @@ public class AppContainer {
     public AppContainer(Application app) {
         prefsManager      = new PrefsManager(app);
         apiClient         = new ApiClient();
-        apiClient.setApiKey(prefsManager.getApiKey());
+
+        String deviceId = Settings.Secure.getString(
+                app.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        apiClient.setDeviceId(deviceId);
+
         apiClient.setModel(prefsManager.getModel());
         historyRepository = new HistoryRepository(app);
     }
 
     public void refreshApiConfig() {
-        apiClient.setApiKey(prefsManager.getApiKey());
         apiClient.setModel(prefsManager.getModel());
     }
 
     public boolean isReady() {
-        return prefsManager.hasApiKey();
+        return true;
     }
 
     public boolean isFirstLaunch() {
@@ -34,7 +39,6 @@ public class AppContainer {
 
     public void reset(Runnable onComplete) {
         prefsManager.clearAllIncludingKey();
-        apiClient.setApiKey("");
         apiClient.clearHistory();
         historyRepository.deleteAll();
         if (onComplete != null) onComplete.run();
