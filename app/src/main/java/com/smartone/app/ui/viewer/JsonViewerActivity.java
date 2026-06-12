@@ -183,9 +183,14 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
     }
 
     private void onInvalidJson(JsonParser.ParseResult result) {
+        String shortError = result.errorMessage != null
+                ? result.errorMessage : "";
+        if (shortError.length() > 120) {
+            shortError = shortError.substring(0, 120) + "...";
+        }
         String msg = "✗ Error en línea " + result.errorLine
                 + ", columna " + result.errorColumn
-                + ": " + result.errorMessage;
+                + ": " + shortError;
         showStatus(msg, getColor(R.color.error));
         binding.tvJsonInfo.setVisibility(View.GONE);
         adapter.submitList(JsonParser.buildLines(currentJson, result.errorLine));
