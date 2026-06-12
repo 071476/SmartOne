@@ -106,6 +106,14 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
     }
 
     private void switchToPreview() {
+        // Si no hay JSON validado pero hay texto pegado, validarlo primero
+        if (currentJson.isEmpty()) {
+            String pasted = binding.etJsonInput.getText() != null
+                    ? binding.etJsonInput.getText().toString().trim() : "";
+            if (!pasted.isEmpty()) {
+                validateCurrentJson();
+            }
+        }
         if (currentJson.isEmpty()) {
             showSnackbar("Carga o pega un JSON primero.");
             return;
