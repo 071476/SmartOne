@@ -242,6 +242,32 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         showSnackbar("Limpiado.");
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        applyFontSize();
+    }
+
+    private void applyFontSize() {
+        try {
+            int size = SmartOneApplication.from(getApplication())
+                    .container.prefsManager.getFontSize();
+            float sp;
+            if (size == com.smartone.app.util.Constants.FONT_SIZE_SMALL) {
+                sp = 11f;
+            } else if (size == com.smartone.app.util.Constants.FONT_SIZE_LARGE) {
+                sp = 16f;
+            } else {
+                sp = 13f;
+            }
+            binding.etJsonInput.setTextSize(sp);
+            binding.tvPreview.setTextSize(sp);
+            binding.tvLineNumbers.setTextSize(sp - 1);
+        } catch (Exception e) {
+            android.util.Log.e("SmartOne", "Error aplicando fuente: " + e.getMessage());
+        }
+    }
+
     private void analyzeWithAI() {
         if (currentJson.isEmpty()) {
             showSnackbar("Carga o pega un JSON primero.");
