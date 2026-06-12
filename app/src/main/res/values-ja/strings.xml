@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartOne</string>
+    <string name="nav_viewer">ビューア</string>
+    <string name="nav_history">履歴</string>
+    <string name="nav_chat">AIチャット</string>
+    <string name="nav_settings">設定</string>
+    <string name="btn_validate">JSON検証</string>
+    <string name="btn_analyze_ai">AIで分析</string>
+    <string name="btn_load_file">ファイルを開く</string>
+    <string name="hint_chat_input">メッセージを入力...</string>
+    <string name="hint_search">履歴を検索...</string>
+    <string name="msg_no_api_key">設定でAPIキーを設定してください。</string>
+    <string name="msg_json_valid">有効なJSON</string>
+    <string name="msg_json_invalid">無効なJSON</string>
+    <string name="action_new_chat">新しい会話</string>
+    <string name="action_delete_all">すべて削除</string>
+    <string name="action_cancel">キャンセル</string>
+    <string name="version">SmartOne v1.0</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartOne</string>
+    <string name="nav_viewer">Просмотр</string>
+    <string name="nav_history">История</string>
+    <string name="nav_chat">ИИ Чат</string>
+    <string name="nav_settings">Настройки</string>
+    <string name="btn_validate">Проверить JSON</string>
+    <string name="btn_analyze_ai">Анализ с ИИ</string>
+    <string name="btn_load_file">Открыть файл</string>
+    <string name="hint_chat_input">Введите сообщение...</string>
+    <string name="hint_search">Поиск в истории...</string>
+    <string name="msg_no_api_key">Настройте API ключ в настройках.</string>
+    <string name="msg_json_valid">Валидный JSON</string>
+    <string name="msg_json_invalid">Невалидный JSON</string>
+    <string name="action_new_chat">Новый разговор</string>
+    <string name="action_delete_all">Удалить всё</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="version">SmartOne v1.0</string>
+</resources>

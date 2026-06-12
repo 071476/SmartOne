@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartOne</string>
+    <string name="nav_viewer">뷰어</string>
+    <string name="nav_history">기록</string>
+    <string name="nav_chat">AI 채팅</string>
+    <string name="nav_settings">설정</string>
+    <string name="btn_validate">JSON 검증</string>
+    <string name="btn_analyze_ai">AI로 분석</string>
+    <string name="btn_load_file">파일 열기</string>
+    <string name="hint_chat_input">메시지를 입력하세요...</string>
+    <string name="hint_search">기록 검색...</string>
+    <string name="msg_no_api_key">설정에서 API 키를 구성하세요.</string>
+    <string name="msg_json_valid">유효한 JSON</string>
+    <string name="msg_json_invalid">유효하지 않은 JSON</string>
+    <string name="action_new_chat">새 대화</string>
+    <string name="action_delete_all">모두 삭제</string>
+    <string name="action_cancel">취소</string>
+    <string name="version">SmartOne v1.0</string>
+</resources>

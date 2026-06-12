@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartOne</string>
+    <string name="nav_viewer">查看器</string>
+    <string name="nav_history">历史记录</string>
+    <string name="nav_chat">AI聊天</string>
+    <string name="nav_settings">设置</string>
+    <string name="btn_validate">验证JSON</string>
+    <string name="btn_analyze_ai">AI分析</string>
+    <string name="btn_load_file">加载文件</string>
+    <string name="hint_chat_input">输入消息...</string>
+    <string name="hint_search">搜索历史记录...</string>
+    <string name="msg_no_api_key">请在设置中配置您的API密钥。</string>
+    <string name="msg_json_valid">有效的JSON</string>
+    <string name="msg_json_invalid">无效的JSON</string>
+    <string name="action_new_chat">新对话</string>
+    <string name="action_delete_all">删除全部</string>
+    <string name="action_cancel">取消</string>
+    <string name="version">SmartOne v1.0</string>
+</resources>

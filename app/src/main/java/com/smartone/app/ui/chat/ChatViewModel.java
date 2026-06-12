@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.smartone.app.data.remote.ApiClient;
 import com.smartone.app.data.repository.ChatMessage;
 import com.smartone.app.util.Constants;
+import com.smartone.app.data.repository.HistoryRepository;
 import com.smartone.app.util.PrefsManager;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +18,7 @@ public class ChatViewModel extends AndroidViewModel {
 
     private final ApiClient    apiClient;
     private final PrefsManager prefsManager;
+    private final HistoryRepository historyRepository;
 
     private final MutableLiveData<List<ChatMessage>> messages
             = new MutableLiveData<>(new ArrayList<>());
@@ -31,6 +33,7 @@ public class ChatViewModel extends AndroidViewModel {
         super(app);
         prefsManager = new PrefsManager(app);
         apiClient    = new ApiClient();
+        historyRepository = new HistoryRepository(app);
         apiClient.setApiKey(prefsManager.getApiKey());
         apiClient.setModel(prefsManager.getModel());
         remainingMessages.setValue(prefsManager.getRemainingFreeMessages());
@@ -69,6 +72,9 @@ public class ChatViewModel extends AndroidViewModel {
             public void onSuccess(String reply) {
                 addMessage(ChatMessage.fromAssistant(reply));
                 isLoading.postValue(false);
+                if (prefsManager.isAutoSave()) {
+                    historyRepository.saveChat(text, reply);
+                }
                 prefsManager.incrementMessagesUsed();
                 remainingMessages.postValue(
                         prefsManager.getRemainingFreeMessages());

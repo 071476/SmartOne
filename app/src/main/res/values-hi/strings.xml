@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartOne</string>
+    <string name="nav_viewer">व्यूअर</string>
+    <string name="nav_history">इतिहास</string>
+    <string name="nav_chat">AI चैट</string>
+    <string name="nav_settings">सेटिंग्स</string>
+    <string name="btn_validate">JSON जांचें</string>
+    <string name="btn_analyze_ai">AI से विश्लेषण</string>
+    <string name="btn_load_file">फ़ाइल खोलें</string>
+    <string name="hint_chat_input">संदेश लिखें...</string>
+    <string name="hint_search">इतिहास में खोजें...</string>
+    <string name="msg_no_api_key">सेटिंग्स में अपनी API key सेट करें।</string>
+    <string name="msg_json_valid">मान्य JSON</string>
+    <string name="msg_json_invalid">अमान्य JSON</string>
+    <string name="action_new_chat">नई बातचीत</string>
+    <string name="action_delete_all">सभी हटाएं</string>
+    <string name="action_cancel">रद्द करें</string>
+    <string name="version">SmartOne v1.0</string>
+</resources>
