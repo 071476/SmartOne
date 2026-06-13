@@ -99,12 +99,27 @@ public class ChatRepository {
             callback.onError("API key no configurada.");
             return;
         }
+        if (prefsManager.hasReachedFreeLimit()) {
+            callback.onError("Alcanzaste el limite diario de mensajes. Vuelve manana.");
+            return;
+        }
         String prompt = "Analiza el siguiente JSON. Describe:\n" +
                 "1. Su estructura general\n" +
                 "2. Los campos principales y sus tipos\n" +
                 "3. Si hay algo inusual o que pueda mejorarse\n\n" +
                 jsonContent;
-        apiClient.sendOneShot(prompt, callback);
+        apiClient.sendOneShot(prompt, new ApiClient.Callback() {
+            @Override
+            public void onSuccess(String reply) {
+                prefsManager.incrementMessagesUsed();
+                updateRemainingMessages();
+                callback.onSuccess(reply);
+            }
+            @Override
+            public void onError(String error) {
+                callback.onError(error);
+            }
+        });
     }
 
     public void clearMessages() {

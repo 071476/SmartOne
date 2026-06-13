@@ -5,7 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,7 +28,6 @@ public class ApiClient {
     private String deviceId = "";
     private final OkHttpClient httpClient;
     private final ExecutorService executor;
-    private final List<JSONObject> conversationHistory;
 
     public interface Callback {
         void onSuccess(String reply);
@@ -44,7 +42,6 @@ public class ApiClient {
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .build();
         this.executor = Executors.newCachedThreadPool();
-        this.conversationHistory = new ArrayList<>();
     }
 
     // Ya no necesita API key porque el backend la tiene
@@ -122,12 +119,10 @@ public class ApiClient {
     }
 
     public void clearHistory() {
-        conversationHistory.clear();
+        // historial manejado por el backend
     }
 
-    public int getHistorySize() {
-        return conversationHistory.size();
-    }
+
 
     public static class ApiException extends Exception {
         public ApiException(String message) {
