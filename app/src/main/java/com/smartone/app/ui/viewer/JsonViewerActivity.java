@@ -259,6 +259,19 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
     protected void onResume() {
         super.onResume();
         applyFontSize();
+        updateRemaining();
+    }
+
+    private void updateRemaining() {
+        try {
+            int rem = SmartOneApplication.from(getApplication())
+                    .container.apiClient.getLastRemaining();
+            if (rem >= 0) {
+                binding.tvRemaining.setText(rem + " left");
+            }
+        } catch (Exception e) {
+            android.util.Log.e("SmartOne", "Error contador: " + e.getMessage());
+        }
     }
 
     private void applyFontSize() {
@@ -295,7 +308,10 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
                         new com.smartone.app.data.remote.ApiClient.Callback() {
                             @Override
                             public void onSuccess(String reply) {
-                                runOnUiThread(() -> showAnalysisDialog(reply));
+                                runOnUiThread(() -> {
+                                    showAnalysisDialog(reply);
+                                    updateRemaining();
+                                });
                             }
                             @Override
                             public void onError(String error) {
@@ -334,7 +350,10 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
                         new com.smartone.app.data.remote.ApiClient.Callback() {
                             @Override
                             public void onSuccess(String reply) {
-                                runOnUiThread(() -> showPerformanceDialog(reply));
+                                runOnUiThread(() -> {
+                                    showPerformanceDialog(reply);
+                                    updateRemaining();
+                                });
                             }
                             @Override
                             public void onError(String error) {

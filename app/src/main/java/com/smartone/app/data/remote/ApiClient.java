@@ -26,6 +26,7 @@ public class ApiClient {
 
     private String model;
     private String deviceId = "";
+    private int lastRemaining = -1;
     private final OkHttpClient httpClient;
     private final ExecutorService executor;
 
@@ -59,6 +60,10 @@ public class ApiClient {
 
     public void setDeviceId(String id) {
         this.deviceId = id != null ? id : "";
+    }
+
+    public int getLastRemaining() {
+        return lastRemaining;
     }
 
     // Siempre configurado porque usa el backend
@@ -98,6 +103,10 @@ public class ApiClient {
                     if (json.has("error")) {
                         callback.onError(json.getString("error"));
                         return;
+                    }
+
+                    if (json.has("remaining")) {
+                        lastRemaining = json.optInt("remaining", -1);
                     }
 
                     String reply = json.optString("reply", "");

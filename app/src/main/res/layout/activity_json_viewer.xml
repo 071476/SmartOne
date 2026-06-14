@@ -47,6 +47,21 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvRemaining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 left"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent"
+            android:background="@drawable/bg_model_active"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_marginEnd="8dp" />
+
         <ImageButton
             android:id="@+id/btnLoadFile"
             android:layout_width="44dp"

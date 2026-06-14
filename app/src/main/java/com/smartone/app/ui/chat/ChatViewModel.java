@@ -75,9 +75,14 @@ public class ChatViewModel extends AndroidViewModel {
                 if (prefsManager.isAutoSave()) {
                     historyRepository.saveChat(text, reply);
                 }
-                prefsManager.incrementMessagesUsed();
-                remainingMessages.postValue(
-                        prefsManager.getRemainingFreeMessages());
+                int backendRemaining = apiClient.getLastRemaining();
+                if (backendRemaining >= 0) {
+                    remainingMessages.postValue(backendRemaining);
+                } else {
+                    prefsManager.incrementMessagesUsed();
+                    remainingMessages.postValue(
+                            prefsManager.getRemainingFreeMessages());
+                }
             }
 
             @Override
