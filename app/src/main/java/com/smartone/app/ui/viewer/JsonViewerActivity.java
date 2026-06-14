@@ -188,6 +188,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         updateLineNumbers(result.formatted);
         historyRepository.saveJson(currentFileName, currentJson);
         binding.btnAnalyzeAI.setEnabled(true);
+        binding.btnPerformance.setEnabled(true);
     }
 
     private void onInvalidJson(JsonParser.ParseResult result) {
@@ -204,6 +205,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         adapter.submitList(JsonParser.buildLines(currentJson, result.errorLine));
         binding.tvPreview.setText("");
         binding.btnAnalyzeAI.setEnabled(false);
+        binding.btnPerformance.setEnabled(false);
     }
 
     private void updateLineNumbers(String text) {
@@ -252,6 +254,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         binding.tvPreview.setText("");
         adapter.submitList(new java.util.ArrayList<>());
         binding.btnAnalyzeAI.setEnabled(false);
+        binding.btnPerformance.setEnabled(false);
         showSnackbar("Limpiado.");
     }
 
