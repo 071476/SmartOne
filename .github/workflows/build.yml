@@ -33,7 +33,13 @@ jobs:
         KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
       run: |
         python3 -c "import os,base64; data=os.environ['KEYSTORE_B64']; clean=''.join(data.split()); open('app/smartone-release.jks','wb').write(base64.b64decode(clean))"
-        ls -la app/smartone-release.jks
+        SIZE=$(stat -c%s app/smartone-release.jks)
+        echo "Tamano del keystore: $SIZE bytes (esperado: 2780)"
+        if [ "$SIZE" -ne 2780 ]; then
+          echo "ERROR: el keystore no tiene el tamano correcto. El secret esta danado."
+          exit 1
+        fi
+        echo "Keystore reconstruido correctamente."
 
     - name: Crear keystore.properties
       run: |
