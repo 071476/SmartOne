@@ -10,3 +10,4 @@ local.properties
 keystore.properties
 keystore-base64.txt
 keystore*.txt
+keystore-base64-oneline.txt
