@@ -29,8 +29,10 @@ jobs:
         echo "$PWD/gradle-8.0/bin" >> $GITHUB_PATH
 
     - name: Reconstruir keystore desde secret
+      env:
+        KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
       run: |
-        printf '%s' "${{ secrets.KEYSTORE_BASE64 }}" | tr -d '[:space:]' | base64 --decode > app/smartone-release.jks
+        python3 -c "import os,base64; data=os.environ['KEYSTORE_B64']; clean=''.join(data.split()); open('app/smartone-release.jks','wb').write(base64.b64decode(clean))"
         ls -la app/smartone-release.jks
 
     - name: Crear keystore.properties
