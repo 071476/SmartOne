@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         if (prefsManager.isFirstLaunch()) {
             prefsManager.setFirstLaunchDone();
             showWelcomeBanner();
-        } else if (!prefsManager.hasApiKey()) {
-            showNoApiKeyBanner();
         }
     }
 
@@ -97,12 +95,9 @@ public class MainActivity extends AppCompatActivity {
     private void showWelcomeBanner() {
         binding.bannerWelcome.setVisibility(View.VISIBLE);
         binding.tvBannerMessage.setText(
-                "Bienvenido a SmartOne. Configura tu API key en Ajustes para comenzar.");
-        binding.btnBannerAction.setText("Configurar");
-        binding.btnBannerAction.setOnClickListener(v -> {
-            hideBanner();
-            binding.bottomNav.setSelectedItemId(R.id.navSettings);
-        });
+                "Bienvenido a SmartOne. Tu asistente de desarrollo con IA.");
+        binding.btnBannerAction.setText("Comenzar");
+        binding.btnBannerAction.setOnClickListener(v -> hideBanner());
         binding.btnBannerClose.setOnClickListener(v -> hideBanner());
     }
 
