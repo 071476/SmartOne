@@ -30,7 +30,8 @@ jobs:
 
     - name: Reconstruir keystore desde secret
       run: |
-        echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/smartone-release.jks
+        printf '%s' "${{ secrets.KEYSTORE_BASE64 }}" | tr -d '[:space:]' | base64 --decode > app/smartone-release.jks
+        ls -la app/smartone-release.jks
 
     - name: Crear keystore.properties
       run: |
