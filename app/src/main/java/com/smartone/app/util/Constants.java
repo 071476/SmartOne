@@ -32,7 +32,7 @@ public final class Constants {
     public static final String HISTORY_TYPE_CHAT  = "chat";
     public static final int    HISTORY_MAX_ITEMS  = 200;
 
-    public static final int    FREE_MESSAGES_LIMIT = 15;
+    public static final int    FREE_MESSAGES_LIMIT = 5;
 
     public static final String EXTRA_JSON_CONTENT = "extra_json_content";
     public static final String EXTRA_HISTORY_ID   = "extra_history_id";
