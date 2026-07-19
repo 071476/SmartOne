@@ -24,9 +24,9 @@ jobs:
 
     - name: Download Gradle 8.0
       run: |
-        wget https://services.gradle.org/distributions/gradle-8.0-bin.zip
-        unzip -q gradle-8.0-bin.zip
-        echo "$PWD/gradle-8.0/bin" >> $GITHUB_PATH
+        wget https://services.gradle.org/distributions/gradle-8.7-bin.zip
+        unzip -q gradle-8.7-bin.zip
+        echo "$PWD/gradle-8.7/bin" >> $GITHUB_PATH
 
     - name: Reconstruir keystore desde secret
       env:
@@ -54,6 +54,9 @@ jobs:
     - name: Build Release APK firmado
       run: gradle assembleRelease --no-daemon
 
+    - name: Build Release AAB firmado
+      run: gradle bundleRelease --no-daemon
+
     - name: Upload APK Debug
       uses: actions/upload-artifact@v4
       with:
@@ -65,3 +68,9 @@ jobs:
       with:
         name: SmartOne-release
         path: app/build/outputs/apk/release/app-release.apk
+
+    - name: Upload AAB Release firmado
+      uses: actions/upload-artifact@v4
+      with:
+        name: SmartOne-aab
+        path: app/build/outputs/bundle/release/app-release.aab
