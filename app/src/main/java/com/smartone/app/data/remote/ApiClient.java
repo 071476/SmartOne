@@ -22,7 +22,7 @@ public class ApiClient {
 
     // URL del backend de SmartOne en Railway
     private static final String BACKEND_URL =
-            "https://smartone-backend-production.up.railway.app/chat";
+            "https://smartone-backend.onrender.com/chat";
 
     private String model;
     private String deviceId = "";
