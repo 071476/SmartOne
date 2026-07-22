@@ -115,7 +115,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
             }
         }
         if (currentJson.isEmpty()) {
-            showSnackbar("Carga o pega un JSON primero.");
+            showSnackbar(getString(R.string.msg_load_json_first));
             return;
         }
         isPreviewMode = true;
@@ -168,7 +168,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
             currentJson = binding.etJsonInput.getText().toString();
         }
         if (currentJson.trim().isEmpty()) {
-            showSnackbar("Carga o pega un JSON para validar.");
+            showSnackbar(getString(R.string.msg_load_json_validate));
             return;
         }
         JsonParser.ParseResult result = JsonParser.parse(currentJson);
@@ -180,7 +180,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
     }
 
     private void onValidJson(JsonParser.ParseResult result) {
-        showStatus("✓ JSON válido", getColor(R.color.success));
+        showStatus("✓ " + getString(R.string.msg_json_valid), getColor(R.color.success));
         binding.tvJsonInfo.setText(result.info.getSummary());
         binding.tvJsonInfo.setVisibility(View.VISIBLE);
         adapter.submitList(JsonParser.buildLines(currentJson, -1));
@@ -197,9 +197,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         if (shortError.length() > 120) {
             shortError = shortError.substring(0, 120) + "...";
         }
-        String msg = "✗ Error en línea " + result.errorLine
-                + ", columna " + result.errorColumn
-                + ": " + shortError;
+        String msg = getString(R.string.json_error_full, result.errorLine, result.errorColumn, shortError);
         showStatus(msg, getColor(R.color.error));
         binding.tvJsonInfo.setVisibility(View.GONE);
         adapter.submitList(JsonParser.buildLines(currentJson, result.errorLine));
@@ -248,7 +246,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
         currentFileName = "sin_archivo.json";
         binding.etJsonInput.setText("");
         binding.tvFileName.setText("sin_archivo.json");
-        binding.tvFileInfo.setText("Sin archivo cargado");
+        binding.tvFileInfo.setText(getString(R.string.viewer_no_file));
         binding.tvStatus.setVisibility(android.view.View.GONE);
         binding.tvJsonInfo.setVisibility(android.view.View.GONE);
         binding.tvPreview.setText("");
@@ -299,10 +297,10 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
 
     private void analyzeWithAI() {
         if (currentJson.isEmpty()) {
-            showSnackbar("Carga o pega un JSON primero.");
+            showSnackbar(getString(R.string.msg_load_json_first));
             return;
         }
-        showSnackbar("Analizando con IA...");
+        showSnackbar(getString(R.string.msg_analyzing_ai));
         SmartOneApplication.from(getApplication())
                 .container
                 .apiClient
@@ -318,7 +316,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
                             }
                             @Override
                             public void onError(String error) {
-                                runOnUiThread(() -> showSnackbar("Error: " + error));
+                                runOnUiThread(() -> showSnackbar(getString(R.string.msg_error_prefix, error)));
                             }
                         }
                 );
@@ -326,25 +324,25 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
 
     private void showAnalysisDialog(String report) {
         new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("\uD83E\uDD16 Analisis con IA")
+                .setTitle(getString(R.string.dialog_title_ai_analysis))
                 .setMessage(report)
-                .setPositiveButton("Cerrar", null)
-                .setNeutralButton("Copiar", (d, w) -> {
+                .setPositiveButton(getString(R.string.action_close), null)
+                .setNeutralButton(getString(R.string.action_copy), (d, w) -> {
                     android.content.ClipboardManager clipboard =
                             (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     clipboard.setPrimaryClip(
                             android.content.ClipData.newPlainText("analisis", report));
-                    showSnackbar("Analisis copiado.");
+                    showSnackbar(getString(R.string.msg_analysis_copied));
                 })
                 .show();
     }
 
     private void analyzePerformance() {
         if (currentJson.isEmpty()) {
-            showSnackbar("Carga o pega un JSON primero.");
+            showSnackbar(getString(R.string.msg_load_json_first));
             return;
         }
-        showSnackbar("Analizando rendimiento...");
+        showSnackbar(getString(R.string.msg_analyzing_performance));
         SmartOneApplication.from(getApplication())
                 .container
                 .apiClient
@@ -360,7 +358,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
                             }
                             @Override
                             public void onError(String error) {
-                                runOnUiThread(() -> showSnackbar("Error: " + error));
+                                runOnUiThread(() -> showSnackbar(getString(R.string.msg_error_prefix, error)));
                             }
                         }
                 );
@@ -368,28 +366,24 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
 
     private void showPerformanceDialog(String report) {
         new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("⚡ Reporte de Rendimiento")
+                .setTitle(getString(R.string.dialog_title_performance))
                 .setMessage(report)
-                .setPositiveButton("Cerrar", null)
-                .setNeutralButton("Copiar", (d, w) -> {
+                .setPositiveButton(getString(R.string.action_close), null)
+                .setNeutralButton(getString(R.string.action_copy), (d, w) -> {
                     android.content.ClipboardManager clipboard =
                             (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     clipboard.setPrimaryClip(
                             android.content.ClipData.newPlainText("reporte", report));
-                    showSnackbar("Reporte copiado.");
+                    showSnackbar(getString(R.string.msg_report_copied));
                 })
                 .show();
     }
 
     private void showInfoDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Archivos compatibles")
-                .setMessage("SmartOne puede abrir:\n\n" +
-                        "• Archivos .json\n" +
-                        "• Archivos .txt con contenido JSON\n\n" +
-                        "Si el JSON contiene errores, se resaltará " +
-                        "la línea exacta donde falla.")
-                .setPositiveButton("Entendido", null)
+                .setTitle(getString(R.string.dialog_title_compatible_files))
+                .setMessage(getString(R.string.dialog_compatible_files_msg))
+                .setPositiveButton(getString(R.string.action_understood), null)
                 .show();
     }
 

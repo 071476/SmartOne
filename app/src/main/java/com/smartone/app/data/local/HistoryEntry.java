@@ -1,8 +1,10 @@
 package com.smartone.app.data.local;
 
+import android.content.Context;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import com.smartone.app.R;
 import com.smartone.app.util.Constants;
 
 @Entity(tableName = "history_entries")
@@ -81,16 +83,16 @@ public class HistoryEntry {
         return flat.length() > 80 ? flat.substring(0, 77) + "..." : flat;
     }
 
-    public String getRelativeTime() {
+    public String getRelativeTime(Context ctx) {
         long diff    = System.currentTimeMillis() - timestamp;
         long minutes = diff / 60_000;
         long hours   = diff / 3_600_000;
         long days    = diff / 86_400_000;
 
-        if (minutes < 1)  return "ahora";
-        if (minutes < 60) return "hace " + minutes + " min";
-        if (hours < 24)   return "hace " + hours + " h";
-        if (days == 1)    return "ayer";
-        return "hace " + days + " días";
+        if (minutes < 1)  return ctx.getString(R.string.time_now);
+        if (minutes < 60) return ctx.getString(R.string.time_min_ago, minutes);
+        if (hours < 24)   return ctx.getString(R.string.time_hours_ago, hours);
+        if (days == 1)    return ctx.getString(R.string.time_yesterday);
+        return ctx.getString(R.string.time_days_ago, days);
     }
 }

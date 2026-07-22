@@ -87,7 +87,7 @@ public class HistoryAdapter
             tvType.setText(entry.type.toUpperCase());
             tvTitle.setText(entry.title);
             tvPreview.setText(entry.preview);
-            tvTime.setText(entry.getRelativeTime());
+            tvTime.setText(entry.getRelativeTime(itemView.getContext()));
 
             if (entry.isJson()) {
                 tvType.setBackgroundResource(R.drawable.bg_badge_json);

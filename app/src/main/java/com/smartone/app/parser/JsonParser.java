@@ -64,7 +64,7 @@ public class JsonParser {
 
     public static ParseResult parse(String input) {
         if (input == null || input.trim().isEmpty()) {
-            return new ParseResult("El contenido está vacío.", 1, 1);
+            return new ParseResult("Content is empty.", 1, 1);
         }
         String trimmed = input.trim();
         try {

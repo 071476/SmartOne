@@ -111,14 +111,14 @@ public class ApiClient {
 
                     String reply = json.optString("reply", "");
                     if (reply.isEmpty()) {
-                        callback.onError("Respuesta vacía del servidor.");
+                        callback.onError("Empty response from server.");
                     } else {
                         callback.onSuccess(reply);
                     }
                 }
 
             } catch (IOException e) {
-                callback.onError("Sin conexión. Verifica tu internet.");
+                callback.onError("No connection. Check your internet.");
             } catch (JSONException e) {
                 callback.onError("Error procesando la respuesta.");
             } catch (Exception e) {

@@ -42,7 +42,7 @@ public class SettingsActivity extends com.smartone.app.ui.BaseActivity {
     private void setupBehaviorSection() {
         binding.switchAutoSave.setOnCheckedChangeListener((btn, checked) -> {
             prefsManager.saveAutoSave(checked);
-            showSnackbar(checked ? "Autoguardado activado." : "Autoguardado desactivado.");
+            showSnackbar(checked ? getString(R.string.msg_autosave_on) : getString(R.string.msg_autosave_off));
         });
     }
 
@@ -58,7 +58,7 @@ public class SettingsActivity extends com.smartone.app.ui.BaseActivity {
     private void selectFont(int size) {
         prefsManager.saveFontSize(size);
         updateFontUI(size);
-        showSnackbar("Tamaño de fuente actualizado.");
+        showSnackbar(getString(R.string.msg_font_updated));
     }
 
     private void updateFontUI(int size) {
@@ -79,14 +79,14 @@ public class SettingsActivity extends com.smartone.app.ui.BaseActivity {
 
     private void confirmClearHistory() {
         new AlertDialog.Builder(this)
-                .setTitle("Limpiar historial")
-                .setMessage("Se eliminarán todas las entradas guardadas. Esta acción no se puede deshacer.")
-                .setPositiveButton("Eliminar todo", (d, w) -> {
+                .setTitle(getString(R.string.dialog_title_clear_history))
+                .setMessage(getString(R.string.dialog_delete_all_saved))
+                .setPositiveButton(getString(R.string.action_delete_all), (d, w) -> {
                     historyRepository.deleteAll();
                     loadStats();
-                    showSnackbar("Historial limpiado.");
+                    showSnackbar(getString(R.string.msg_history_cleared));
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(getString(R.string.action_cancel), null)
                 .show();
     }
 

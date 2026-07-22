@@ -15,7 +15,6 @@ import com.smartone.app.SmartOneApplication;
 import com.smartone.app.data.local.HistoryEntry;
 import com.smartone.app.data.repository.HistoryRepository;
 import com.smartone.app.databinding.ActivityHistoryBinding;
-import com.smartone.app.R;
 import com.smartone.app.ui.chat.AiChatActivity;
 import com.smartone.app.ui.viewer.JsonViewerActivity;
 import com.smartone.app.util.Constants;
@@ -130,7 +129,9 @@ public class HistoryActivity extends com.smartone.app.ui.BaseActivity {
         binding.rvHistory.setVisibility(empty ? View.GONE : View.VISIBLE);
         int count = entries != null ? entries.size() : 0;
         binding.tvEntryCount.setText(
-                count == 1 ? "1 entrada" : count + " entradas");
+                count == 1
+                        ? getString(R.string.count_one_entry)
+                        : getString(R.string.count_entries, count));
         if (!empty) adapter.submitList(entries);
     }
 
@@ -151,7 +152,10 @@ public class HistoryActivity extends com.smartone.app.ui.BaseActivity {
     }
 
     private void onEntryLongClick(HistoryEntry entry) {
-        String[] options = {"Eliminar", "Copiar contenido"};
+        String[] options = {
+                getString(R.string.action_delete),
+                getString(R.string.action_copy_content)
+        };
         new AlertDialog.Builder(this)
                 .setTitle(entry.title)
                 .setItems(options, (dialog, which) -> {
@@ -164,30 +168,32 @@ public class HistoryActivity extends com.smartone.app.ui.BaseActivity {
     private void onFavoriteClick(HistoryEntry entry) {
         boolean newState = !entry.isFavorite;
         repository.setFavorite(entry.id, newState);
-        showSnackbar(newState ? "Marcado como favorito" : "Eliminado de favoritos");
+        showSnackbar(newState
+                ? getString(R.string.msg_marked_favorite)
+                : getString(R.string.msg_unmarked_favorite));
     }
 
     private void confirmDelete(HistoryEntry entry) {
         new AlertDialog.Builder(this)
-                .setTitle("Eliminar entrada")
-                .setMessage("¿Eliminar \"" + entry.title + "\"?")
-                .setPositiveButton("Eliminar", (d, w) -> {
+                .setTitle(getString(R.string.dialog_title_delete_entry))
+                .setMessage(getString(R.string.dialog_delete_entry, entry.title))
+                .setPositiveButton(getString(R.string.action_delete), (d, w) -> {
                     repository.delete(entry);
-                    showSnackbar("Entrada eliminada.");
+                    showSnackbar(getString(R.string.msg_entry_deleted));
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(getString(R.string.action_cancel), null)
                 .show();
     }
 
     private void confirmDeleteAll() {
         new AlertDialog.Builder(this)
-                .setTitle("Limpiar historial")
-                .setMessage("Se eliminarán todas las entradas. Esta acción no se puede deshacer.")
-                .setPositiveButton("Eliminar todo", (d, w) -> {
+                .setTitle(getString(R.string.dialog_title_clear_history))
+                .setMessage(getString(R.string.dialog_delete_all_history))
+                .setPositiveButton(getString(R.string.action_delete_all), (d, w) -> {
                     repository.deleteAll();
-                    showSnackbar("Historial limpiado.");
+                    showSnackbar(getString(R.string.msg_history_cleared));
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(getString(R.string.action_cancel), null)
                 .show();
     }
 
@@ -196,7 +202,7 @@ public class HistoryActivity extends com.smartone.app.ui.BaseActivity {
                 (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         clipboard.setPrimaryClip(
                 android.content.ClipData.newPlainText(entry.title, entry.content));
-        showSnackbar("Contenido copiado.");
+        showSnackbar(getString(R.string.msg_content_copied));
     }
 
     private void showSnackbar(String message) {

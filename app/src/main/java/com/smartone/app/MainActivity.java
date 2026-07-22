@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
     private void showWelcomeBanner() {
         binding.bannerWelcome.setVisibility(View.VISIBLE);
         binding.tvBannerMessage.setText(
-                "Bienvenido a SmartOne. Tu asistente de desarrollo con IA.");
-        binding.btnBannerAction.setText("Comenzar");
+                getString(R.string.banner_welcome_msg));
+        binding.btnBannerAction.setText(getString(R.string.action_start));
         binding.btnBannerAction.setOnClickListener(v -> hideBanner());
         binding.btnBannerClose.setOnClickListener(v -> hideBanner());
     }
@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
     private void showNoApiKeyBanner() {
         binding.bannerWelcome.setVisibility(View.VISIBLE);
         binding.tvBannerMessage.setText(
-                "Sin API key. El chat no funcionará hasta que la configures.");
-        binding.btnBannerAction.setText("Ir a Ajustes");
+                getString(R.string.msg_no_api_key_chat));
+        binding.btnBannerAction.setText(getString(R.string.action_go_settings));
         binding.btnBannerAction.setOnClickListener(v -> {
             hideBanner();
             binding.bottomNav.setSelectedItemId(R.id.navSettings);
