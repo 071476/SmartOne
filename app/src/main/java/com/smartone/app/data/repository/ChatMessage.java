@@ -71,14 +71,7 @@ public class ChatMessage {
                 : content;
     }
 
-    public static ChatMessage welcome() {
-        return system(
-            "Hola. Soy tu asistente en SmartOne.\n\n" +
-            "Puedo ayudarte a:\n" +
-            "• Analizar y corregir archivos JSON\n" +
-            "• Responder preguntas técnicas sobre APIs\n" +
-            "• Revisar código y estructuras de datos\n\n" +
-            "¿En qué trabajamos hoy?"
-        );
+    public static ChatMessage welcome(String welcomeText) {
+        return system(welcomeText);
     }
 }

@@ -17,4 +17,19 @@
     <string name="action_delete_all">Eliminar todo</string>
     <string name="action_cancel">Cancelar</string>
     <string name="version">SmartOne v1.0</string>
+
+    <!-- Textos nuevos (movidos desde el código Java) -->
+    <string name="chat_welcome">Hola. Soy tu asistente en SmartOne.\n\nPuedo ayudarte a:\n• Analizar y corregir archivos JSON\n• Responder preguntas técnicas sobre APIs\n• Revisar código y estructuras de datos\n\n¿En qué trabajamos hoy?</string>
+    <string name="msg_no_api_key_chat">Sin API key. El chat no funcionará hasta que la configures.</string>
+    <string name="time_days_ago">hace %d días</string>
+    <string name="err_empty_response">Respuesta vacía del servidor.</string>
+    <string name="err_no_connection">Sin conexión. Verifica tu internet.</string>
+    <string name="err_daily_limit">Alcanzaste el límite diario de mensajes. Vuelve mañana.</string>
+    <string name="err_empty_content">El contenido está vacío.</string>
+    <string name="dialog_delete_entry">¿Eliminar \"%s\"?</string>
+    <string name="dialog_delete_all_history">Se eliminarán todas las entradas. Esta acción no se puede deshacer.</string>
+    <string name="dialog_delete_all_saved">Se eliminarán todas las entradas guardadas. Esta acción no se puede deshacer.</string>
+    <string name="msg_font_updated">Tamaño de fuente actualizado.</string>
+    <string name="json_error_line">Error en línea %d</string>
+    <string name="viewer_help">Si el JSON contiene errores, se resaltará la línea exacta donde falla.</string>
 </resources>

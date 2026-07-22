@@ -17,4 +17,19 @@
     <string name="action_delete_all">删除全部</string>
     <string name="action_cancel">取消</string>
     <string name="version">SmartOne v1.0</string>
+
+    <!-- 新字符串（从Java代码移动） -->
+    <string name="chat_welcome">你好。我是SmartOne的助手。\n\n我可以帮你：\n• 分析和修正JSON文件\n• 回答有关API的技术问题\n• 审查代码和数据结构\n\n今天我们做什么？</string>
+    <string name="msg_no_api_key_chat">没有API密钥。在配置之前聊天将无法使用。</string>
+    <string name="time_days_ago">%d天前</string>
+    <string name="err_empty_response">服务器返回空响应。</string>
+    <string name="err_no_connection">无连接。请检查您的网络。</string>
+    <string name="err_daily_limit">您已达到每日消息上限。请明天再来。</string>
+    <string name="err_empty_content">内容为空。</string>
+    <string name="dialog_delete_entry">删除\"%s\"？</string>
+    <string name="dialog_delete_all_history">将删除所有条目。此操作无法撤销。</string>
+    <string name="dialog_delete_all_saved">将删除所有已保存的条目。此操作无法撤销。</string>
+    <string name="msg_font_updated">字体大小已更新。</string>
+    <string name="json_error_line">第%d行出错</string>
+    <string name="viewer_help">如果JSON包含错误，将高亮显示出错的确切行。</string>
 </resources>

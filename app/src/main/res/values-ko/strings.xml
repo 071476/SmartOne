@@ -17,4 +17,19 @@
     <string name="action_delete_all">모두 삭제</string>
     <string name="action_cancel">취소</string>
     <string name="version">SmartOne v1.0</string>
+
+    <!-- 새 문자열 (Java 코드에서 이동) -->
+    <string name="chat_welcome">안녕하세요. SmartOne 어시스턴트입니다.\n\n도와드릴 수 있는 것:\n• JSON 파일 분석 및 수정\n• API에 대한 기술적 질문 답변\n• 코드 및 데이터 구조 검토\n\n오늘은 무엇을 작업할까요?</string>
+    <string name="msg_no_api_key_chat">API 키가 없습니다. 구성하기 전까지 채팅이 작동하지 않습니다.</string>
+    <string name="time_days_ago">%d일 전</string>
+    <string name="err_empty_response">서버에서 빈 응답이 왔습니다.</string>
+    <string name="err_no_connection">연결이 없습니다. 인터넷을 확인하세요.</string>
+    <string name="err_daily_limit">일일 메시지 한도에 도달했습니다. 내일 다시 오세요.</string>
+    <string name="err_empty_content">내용이 비어 있습니다.</string>
+    <string name="dialog_delete_entry">\"%s\"을(를) 삭제하시겠습니까?</string>
+    <string name="dialog_delete_all_history">모든 항목이 삭제됩니다. 이 작업은 취소할 수 없습니다.</string>
+    <string name="dialog_delete_all_saved">저장된 모든 항목이 삭제됩니다. 이 작업은 취소할 수 없습니다.</string>
+    <string name="msg_font_updated">글꼴 크기가 업데이트되었습니다.</string>
+    <string name="json_error_line">%d번째 줄에 오류</string>
+    <string name="viewer_help">JSON에 오류가 있으면 실패한 정확한 줄이 강조 표시됩니다.</string>
 </resources>

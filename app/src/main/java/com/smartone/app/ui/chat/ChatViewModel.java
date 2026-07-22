@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import com.smartone.app.R;
 import com.smartone.app.data.remote.ApiClient;
 import com.smartone.app.data.repository.ChatMessage;
 import com.smartone.app.util.Constants;
@@ -47,7 +48,8 @@ public class ChatViewModel extends AndroidViewModel {
     public void addWelcomeMessage() {
         List<ChatMessage> current = messages.getValue();
         if (current == null || current.isEmpty()) {
-            addMessage(ChatMessage.welcome());
+            addMessage(ChatMessage.welcome(
+                    getApplication().getString(R.string.chat_welcome)));
         }
     }
 
@@ -55,12 +57,14 @@ public class ChatViewModel extends AndroidViewModel {
         if (text == null || text.trim().isEmpty()) return;
 
         if (!apiClient.isConfigured()) {
-            errorEvent.postValue("API key no configurada. Ve a Ajustes.");
+            errorEvent.postValue(
+                    getApplication().getString(R.string.msg_no_api_key));
             return;
         }
 
         if (prefsManager.hasReachedFreeLimit()) {
-            errorEvent.postValue("Límite diario alcanzado. Vuelve mañana.");
+            errorEvent.postValue(
+                    getApplication().getString(R.string.err_daily_limit));
             return;
         }
 
