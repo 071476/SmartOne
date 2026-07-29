@@ -68,4 +68,24 @@
     <string name="msg_error_prefix">错误: %s</string>
     <string name="msg_load_json_validate">加载或粘贴要验证的JSON。</string>
     <string name="msg_analyzing_ai">正在用AI分析...</string>
+    <string name="chat_connected">已连接</string>
+    <string name="home_subtitle">您的开发助手</string>
+    <string name="filter_all">全部</string>
+    <string name="filter_favorites">★ 收藏</string>
+    <string name="empty_no_entries">还没有条目</string>
+    <string name="empty_entries_hint">验证的JSON和聊天\n将自动保存在此处。</string>
+    <string name="tab_editor">编辑器</string>
+    <string name="tab_preview">预览</string>
+    <string name="btn_analyze_performance">分析性能</string>
+    <string name="settings_behavior">行为</string>
+    <string name="settings_autosave">自动保存聊天</string>
+    <string name="settings_autosave_desc">将响应保存到历史记录</string>
+    <string name="settings_font_size">字体大小</string>
+    <string name="settings_font_desc">在JSON Viewer中</string>
+    <string name="settings_data">数据</string>
+    <string name="settings_saved_entries">已保存的条目</string>
+    <string name="settings_clear_history">清除历史记录</string>
+    <string name="settings_clear_desc">删除所有已保存的数据</string>
+    <string name="settings_subtitle">SmartOne设置</string>
+    <string name="json_viewer_title">JSON Viewer</string>
 </resources>

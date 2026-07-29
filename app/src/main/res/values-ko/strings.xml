@@ -68,4 +68,24 @@
     <string name="msg_error_prefix">오류: %s</string>
     <string name="msg_load_json_validate">검증할 JSON을 로드하거나 붙여넣으세요.</string>
     <string name="msg_analyzing_ai">AI로 분석 중...</string>
+    <string name="chat_connected">연결됨</string>
+    <string name="home_subtitle">당신의 개발 도우미</string>
+    <string name="filter_all">전체</string>
+    <string name="filter_favorites">★ 즐겨찾기</string>
+    <string name="empty_no_entries">아직 항목이 없습니다</string>
+    <string name="empty_entries_hint">검증한 JSON과 채팅이\n여기에 자동으로 저장됩니다.</string>
+    <string name="tab_editor">편집기</string>
+    <string name="tab_preview">미리보기</string>
+    <string name="btn_analyze_performance">성능 분석</string>
+    <string name="settings_behavior">동작</string>
+    <string name="settings_autosave">채팅 자동 저장</string>
+    <string name="settings_autosave_desc">응답을 기록에 저장합니다</string>
+    <string name="settings_font_size">글꼴 크기</string>
+    <string name="settings_font_desc">JSON Viewer에서</string>
+    <string name="settings_data">데이터</string>
+    <string name="settings_saved_entries">저장된 항목</string>
+    <string name="settings_clear_history">기록 지우기</string>
+    <string name="settings_clear_desc">저장된 모든 데이터를 삭제합니다</string>
+    <string name="settings_subtitle">SmartOne 설정</string>
+    <string name="json_viewer_title">JSON Viewer</string>
 </resources>

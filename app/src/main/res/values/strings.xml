@@ -68,4 +68,24 @@
     <string name="msg_error_prefix">Error: %s</string>
     <string name="msg_load_json_validate">Carga o pega un JSON para validar.</string>
     <string name="msg_analyzing_ai">Analizando con IA...</string>
+    <string name="chat_connected">Conectado</string>
+    <string name="home_subtitle">Tu asistente de desarrollo</string>
+    <string name="filter_all">Todo</string>
+    <string name="filter_favorites">★ Favoritos</string>
+    <string name="empty_no_entries">Sin entradas aún</string>
+    <string name="empty_entries_hint">Los JSON que valides y los chats\nse guardarán aquí automáticamente.</string>
+    <string name="tab_editor">Editor</string>
+    <string name="tab_preview">Preview</string>
+    <string name="btn_analyze_performance">Analizar rendimiento</string>
+    <string name="settings_behavior">COMPORTAMIENTO</string>
+    <string name="settings_autosave">Autoguardar chats</string>
+    <string name="settings_autosave_desc">Guarda respuestas en historial</string>
+    <string name="settings_font_size">Tamaño de fuente</string>
+    <string name="settings_font_desc">En el JSON Viewer</string>
+    <string name="settings_data">DATOS</string>
+    <string name="settings_saved_entries">Entradas guardadas</string>
+    <string name="settings_clear_history">Limpiar historial</string>
+    <string name="settings_clear_desc">Elimina todos los datos guardados</string>
+    <string name="settings_subtitle">Configuración de SmartOne</string>
+    <string name="json_viewer_title">JSON Viewer</string>
 </resources>

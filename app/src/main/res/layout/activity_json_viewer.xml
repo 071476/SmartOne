@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="JSON Viewer"
+                android:text="@string/json_viewer_title"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
@@ -40,7 +40,7 @@
                 android:id="@+id/tvFileInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sin archivo cargado"
+                android:text="@string/viewer_no_file"
                 android:textSize="11sp"
                 android:textColor="@color/text_secondary"
                 android:layout_marginTop="2dp" />
@@ -237,7 +237,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Editor"
+            android:text="@string/tab_editor"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -251,7 +251,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Preview"
+            android:text="@string/tab_preview"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -367,7 +367,7 @@
                 android:id="@+id/btnPerformance"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
-                android:text="Analizar rendimiento"
+                android:text="@string/btn_analyze_performance"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" />

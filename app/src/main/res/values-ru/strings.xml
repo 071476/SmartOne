@@ -68,4 +68,24 @@
     <string name="msg_error_prefix">Ошибка: %s</string>
     <string name="msg_load_json_validate">Загрузите или вставьте JSON для проверки.</string>
     <string name="msg_analyzing_ai">Анализ с ИИ...</string>
+    <string name="chat_connected">Подключено</string>
+    <string name="home_subtitle">Ваш помощник разработчика</string>
+    <string name="filter_all">Все</string>
+    <string name="filter_favorites">★ Избранное</string>
+    <string name="empty_no_entries">Пока нет записей</string>
+    <string name="empty_entries_hint">Проверенные JSON и чаты\nбудут автоматически сохранены здесь.</string>
+    <string name="tab_editor">Редактор</string>
+    <string name="tab_preview">Просмотр</string>
+    <string name="btn_analyze_performance">Анализ производительности</string>
+    <string name="settings_behavior">ПОВЕДЕНИЕ</string>
+    <string name="settings_autosave">Автосохранение чатов</string>
+    <string name="settings_autosave_desc">Сохраняет ответы в историю</string>
+    <string name="settings_font_size">Размер шрифта</string>
+    <string name="settings_font_desc">В JSON Viewer</string>
+    <string name="settings_data">ДАННЫЕ</string>
+    <string name="settings_saved_entries">Сохранённые записи</string>
+    <string name="settings_clear_history">Очистить историю</string>
+    <string name="settings_clear_desc">Удаляет все сохранённые данные</string>
+    <string name="settings_subtitle">Настройки SmartOne</string>
+    <string name="json_viewer_title">JSON Viewer</string>
 </resources>

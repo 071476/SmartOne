@@ -68,4 +68,24 @@
     <string name="msg_error_prefix">त्रुटि: %s</string>
     <string name="msg_load_json_validate">सत्यापित करने के लिए JSON लोड करें या पेस्ट करें।</string>
     <string name="msg_analyzing_ai">AI से विश्लेषण हो रहा है...</string>
+    <string name="chat_connected">कनेक्टेड</string>
+    <string name="home_subtitle">आपका विकास सहायक</string>
+    <string name="filter_all">सभी</string>
+    <string name="filter_favorites">★ पसंदीदा</string>
+    <string name="empty_no_entries">अभी तक कोई प्रविष्टि नहीं</string>
+    <string name="empty_entries_hint">सत्यापित JSON और चैट\nयहां स्वचालित रूप से सहेजे जाएंगे।</string>
+    <string name="tab_editor">एडिटर</string>
+    <string name="tab_preview">पूर्वावलोकन</string>
+    <string name="btn_analyze_performance">प्रदर्शन का विश्लेषण करें</string>
+    <string name="settings_behavior">व्यवहार</string>
+    <string name="settings_autosave">चैट स्वतः सहेजें</string>
+    <string name="settings_autosave_desc">प्रतिक्रियाएं इतिहास में सहेजता है</string>
+    <string name="settings_font_size">फ़ॉन्ट आकार</string>
+    <string name="settings_font_desc">JSON Viewer में</string>
+    <string name="settings_data">डेटा</string>
+    <string name="settings_saved_entries">सहेजी गई प्रविष्टियां</string>
+    <string name="settings_clear_history">इतिहास साफ़ करें</string>
+    <string name="settings_clear_desc">सभी सहेजा गया डेटा हटाता है</string>
+    <string name="settings_subtitle">SmartOne सेटिंग्स</string>
+    <string name="json_viewer_title">JSON Viewer</string>
 </resources>

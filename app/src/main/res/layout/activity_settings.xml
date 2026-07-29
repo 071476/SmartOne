@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ajustes"
+                android:text="@string/nav_settings"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Configuración de SmartOne"
+                android:text="@string/settings_subtitle"
                 android:textSize="11sp"
                 android:textColor="@color/text_secondary"
                 android:layout_marginTop="2dp" />
@@ -69,7 +69,7 @@
 <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="COMPORTAMIENTO"
+                android:text="@string/settings_behavior"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_tertiary"
@@ -99,7 +99,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Autoguardar chats"
+                            android:text="@string/settings_autosave"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary" />
@@ -107,7 +107,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Guarda respuestas en historial"
+                            android:text="@string/settings_autosave_desc"
                             android:textSize="11sp"
                             android:textColor="@color/text_secondary"
                             android:layout_marginTop="2dp" />
@@ -144,7 +144,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tamaño de fuente"
+                            android:text="@string/settings_font_size"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary" />
@@ -152,7 +152,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="En el JSON Viewer"
+                            android:text="@string/settings_font_desc"
                             android:textSize="11sp"
                             android:textColor="@color/text_secondary"
                             android:layout_marginTop="2dp" />
@@ -207,7 +207,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DATOS"
+                android:text="@string/settings_data"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_tertiary"
@@ -237,7 +237,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Entradas guardadas"
+                            android:text="@string/settings_saved_entries"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary" />
@@ -281,7 +281,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Limpiar historial"
+                            android:text="@string/settings_clear_history"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textColor="@color/error" />
@@ -289,7 +289,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Elimina todos los datos guardados"
+                            android:text="@string/settings_clear_desc"
                             android:textSize="11sp"
                             android:textColor="@color/text_secondary"
                             android:layout_marginTop="2dp" />

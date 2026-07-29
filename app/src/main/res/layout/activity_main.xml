@@ -71,7 +71,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tu asistente de desarrollo"
+                android:text="@string/home_subtitle"
                 android:textSize="13sp"
                 android:textColor="@color/text_secondary"
                 android:layout_marginBottom="20dp" />
@@ -158,7 +158,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="JSON Viewer"
+                            android:text="@string/json_viewer_title"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
@@ -194,7 +194,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Historial"
+                            android:text="@string/nav_history"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
@@ -230,7 +230,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Chat IA"
+                            android:text="@string/nav_chat"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
@@ -266,7 +266,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ajustes"
+                            android:text="@string/nav_settings"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"

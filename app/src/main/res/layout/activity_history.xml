@@ -36,7 +36,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Historial"
+                    android:text="@string/nav_history"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary" />
@@ -102,7 +102,7 @@
                 android:id="@+id/filterAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Todo"
+                android:text="@string/filter_all"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:paddingStart="14dp"
@@ -147,7 +147,7 @@
                 android:id="@+id/filterFavorites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="★ Favoritos"
+                android:text="@string/filter_favorites"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:paddingStart="14dp"
@@ -182,7 +182,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sin entradas aún"
+            android:text="@string/empty_no_entries"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/text_primary"
@@ -191,7 +191,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Los JSON que valides y los chats\nse guardarán aquí automáticamente."
+            android:text="@string/empty_entries_hint"
             android:textSize="13sp"
             android:textColor="@color/text_secondary"
             android:gravity="center"
