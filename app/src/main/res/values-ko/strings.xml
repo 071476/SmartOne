@@ -88,4 +88,8 @@
     <string name="settings_clear_desc">저장된 모든 데이터를 삭제합니다</string>
     <string name="settings_subtitle">SmartOne 설정</string>
     <string name="json_viewer_title">JSON Viewer</string>
+    <string name="hint_paste_json">여기에 JSON을 붙여넣으세요...</string>
+    <string name="default_filename">untitled.json</string>
+    <string name="cd_new_conversation">새 대화</string>
+    <string name="cd_info">정보</string>
 </resources>

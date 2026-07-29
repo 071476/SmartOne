@@ -88,4 +88,8 @@
     <string name="settings_clear_desc">सभी सहेजा गया डेटा हटाता है</string>
     <string name="settings_subtitle">SmartOne सेटिंग्स</string>
     <string name="json_viewer_title">JSON Viewer</string>
+    <string name="hint_paste_json">यहां अपना JSON पेस्ट करें...</string>
+    <string name="default_filename">untitled.json</string>
+    <string name="cd_new_conversation">नई बातचीत</string>
+    <string name="cd_info">जानकारी</string>
 </resources>

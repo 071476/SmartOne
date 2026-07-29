@@ -87,7 +87,7 @@
                 android:layout_height="36dp"
                 android:background="@drawable/bg_icon_button"
                 android:src="@drawable/ic_new_chat"
-                android:contentDescription="Nueva conversación"
+                android:contentDescription="@string/cd_new_conversation"
                 android:padding="8dp" />
 
         </LinearLayout>

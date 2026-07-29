@@ -78,7 +78,7 @@
             android:layout_height="36dp"
             android:background="@drawable/bg_icon_button"
             android:src="@drawable/ic_info"
-            android:contentDescription="Información"
+            android:contentDescription="@string/cd_info"
             android:padding="8dp" />
 
     </LinearLayout>
@@ -117,7 +117,7 @@
         android:id="@+id/etJsonInput"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:hint="Pega tu JSON aquí..."
+        android:hint="@string/hint_paste_json"
         android:textSize="12sp"
         android:fontFamily="monospace"
         android:textColor="@color/text_primary"
@@ -184,7 +184,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="sin_archivo.json"
+                android:text="@string/default_filename"
                 android:textSize="11sp"
                 android:textColor="@color/text_tertiary"
                 android:fontFamily="monospace"

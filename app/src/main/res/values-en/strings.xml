@@ -88,4 +88,8 @@
     <string name="settings_clear_desc">Deletes all saved data</string>
     <string name="settings_subtitle">SmartOne settings</string>
     <string name="json_viewer_title">JSON Viewer</string>
+    <string name="hint_paste_json">Paste your JSON here...</string>
+    <string name="default_filename">untitled.json</string>
+    <string name="cd_new_conversation">New conversation</string>
+    <string name="cd_info">Information</string>
 </resources>

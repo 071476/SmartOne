@@ -34,7 +34,7 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
     private ActivityResultLauncher<String[]> openFileLauncher;
 
     private String  currentJson     = "";
-    private String  currentFileName = "sin_archivo.json";
+    private String  currentFileName = "untitled.json";
     private boolean isPreviewMode   = false;
 
     @Override
@@ -243,9 +243,9 @@ public class JsonViewerActivity extends com.smartone.app.ui.BaseActivity {
 
     private void clearAll() {
         currentJson = "";
-        currentFileName = "sin_archivo.json";
+        currentFileName = "untitled.json";
         binding.etJsonInput.setText("");
-        binding.tvFileName.setText("sin_archivo.json");
+        binding.tvFileName.setText(getString(R.string.default_filename));
         binding.tvFileInfo.setText(getString(R.string.viewer_no_file));
         binding.tvStatus.setVisibility(android.view.View.GONE);
         binding.tvJsonInfo.setVisibility(android.view.View.GONE);
